@@ -1,6 +1,7 @@
 const form = document.querySelector('#add');
 const list = document.querySelector('#list');
 const input = document.querySelector('#add-input');
+const hideUl = document.querySelector('#hide-list');
 
 loadAllEventListners();
 
@@ -8,6 +9,7 @@ function loadAllEventListners(){
     form.addEventListener('submit', addNoteToList);
     list.addEventListener('click', deleteNoteFromList);
     list.addEventListener('click', editNoteFromList);
+    hideUl.addEventListener('click', hideList);
 }
 
 //Add note to list
@@ -59,6 +61,17 @@ function editNoteFromList(e){
                 }
             }
         });
+    }
+}
+//Hide notes
+function hideList(){
+    let label = document.querySelector('label');
+    if(e.target.checked){
+        label.textContent = 'Unhide notes';
+        list.style.display = 'none';
+    }else{
+        label.textContent.textContent = 'hide notes';
+        list.style.display = 'block';
     }
 }
 function clearInput(){
