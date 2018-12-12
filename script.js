@@ -2,6 +2,7 @@ const form = document.querySelector('#add');
 const list = document.querySelector('#list');
 const input = document.querySelector('#add-input');
 const hideUl = document.querySelector('#hide-list');
+const search = document.querySelector('#search-note');
 
 loadAllEventListners();
 
@@ -10,6 +11,7 @@ function loadAllEventListners(){
     list.addEventListener('click', deleteNoteFromList);
     list.addEventListener('click', editNoteFromList);
     hideUl.addEventListener('click', hideList);
+    search.addEventListener('keyup', searchForNote);
 }
 
 //Add note to list
@@ -73,6 +75,17 @@ function hideList(){
         label.textContent.textContent = 'hide notes';
         list.style.display = 'block';
     }
+}
+function searchForNote(e){
+    const text = e.target.value.toLowerCase();
+    document.querySelectorAll('li').forEach(function(note){
+        const item = note.firstElementChild.textContent;
+        if(item.toLowerCase().indexOf(text) != -1){
+            note.style.display = 'block';
+        }else{
+            note.style.display = 'none';
+        }
+    });
 }
 function clearInput(){
     input.value = '';
